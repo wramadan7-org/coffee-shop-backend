@@ -15,6 +15,7 @@ module.exports = {
   },
   getItem: (table, key, query) => {
     // cek apakah ada query
+    // console.log(key)
     if (key) {
       return new Promise((resolve, rejected) => {
         db.query('SELECT * FROM ?? WHERE ?? LIKE ?', [table, key, `%${query}%`], (err, results, field) => {
@@ -36,6 +37,18 @@ module.exports = {
         })
       })
     }
+  },
+  getItemAnd: (table, param1, param2) => {
+    return new Promise((resolve, rejected) => {
+      console.log(param1, param2)
+      db.query('SELECT * FROM ?? WHERE ? AND ?', [table, param1, param2], (err, results, field) => {
+        if (!err) {
+          resolve(results)
+        } else {
+          rejected(err)
+        }
+      })
+    })
   },
   getItemJoin: (table, key, query) => {
     // if (key) {
@@ -74,6 +87,7 @@ module.exports = {
   },
   detailItem: (table, id) => {
     return new Promise((resolve, rejected) => {
+      console.log(id)
       db.query('SELECT * FROM ?? WHERE ?', [table, id], (err, results, field) => {
         if (!err) {
           resolve(results)
@@ -97,6 +111,18 @@ module.exports = {
   deleteItem: (table, id) => {
     return new Promise((resolve, rejected) => {
       db.query('DELETE FROM ?? WHERE ?', [table, id], (err, results, field) => {
+        if (!err) {
+          resolve(results)
+        } else {
+          rejected(err)
+        }
+      })
+    })
+  },
+  selectDataJoin: (data, from) => {
+    return new Promise((resolve, rejected) => {
+      db.query(`SELECT ${data} FROM ${from}`, (err, results, field) => {
+        console.log('dataaaaa', results)
         if (!err) {
           resolve(results)
         } else {

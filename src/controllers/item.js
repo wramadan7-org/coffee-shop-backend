@@ -146,7 +146,7 @@ module.exports = {
       }
 
       const checkItem = await queryDB.detailItem('items', { id })
-      console.log('waaw', checkItem[0])
+      // console.log('waaw', checkItem[0])
       const data = {
         name: value.name || checkItem[0].name,
         id_category: value.category || checkItem[0].id_category,
@@ -157,8 +157,8 @@ module.exports = {
         price: value.price || checkItem[0].price
       }
 
-      console.log('data', data)
-      console.log('value', value)
+      // console.log('data', data)
+      // console.log('value', value)
 
       const updateItem = await queryDB.updatePatchItem('items', { ...data }, { id })
 
