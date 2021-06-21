@@ -13,6 +13,19 @@ module.exports = {
       })
     })
   },
+  addItemWithValues: (table, set, values) => {
+    console.log(set)
+    console.log(values)
+    return new Promise((resolve, rejected) => {
+      db.query(`INSERT INTO ${table} (${set}) VALUES ${values}`, (err, results, field) => {
+        if (!err) {
+          resolve(results)
+        } else {
+          rejected(err)
+        }
+      })
+    })
+  },
   getItem: (table, key, query) => {
     // cek apakah ada query
     // console.log(key)

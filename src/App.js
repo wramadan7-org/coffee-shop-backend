@@ -17,12 +17,14 @@ const item = require('./routers/item')
 const category = require('./routers/category')
 const variant = require('./routers/variant')
 const cart = require('./routers/cart')
+const payment = require('./routers/payment')
 
 app.use('/auth', auth)
 app.use('/items', item)
 app.use('/category', category)
 app.use('/variant', variant)
 app.use('/cart', tokenAuth, cart)
+app.use('/payment', tokenAuth, payment)
 
 app.listen(APP_PORT, () => {
   console.log(`PORT ${APP_PORT} SEDANG BERJALAN`)

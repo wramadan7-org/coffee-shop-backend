@@ -10,8 +10,7 @@ module.exports = {
       const { id } = req.user.user
       const cartSchema = joi.object({
         id_item: joi
-          .string()
-          .regex(new RegExp('^[0-9]+$'))
+          .number()
           .required(),
         qty: joi
           .number()
